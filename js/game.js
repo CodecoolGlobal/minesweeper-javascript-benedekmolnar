@@ -4,6 +4,8 @@ const game = {
 
         // TODO: do the rest of the game setup here (eg. add event listeners)
         this.initRightClick();
+
+        this.initLeftClick();
     },
 
     drawBoard: function () {
@@ -53,24 +55,24 @@ const game = {
     },
     // reference solution for "Create mine flagging feature" user story
     initRightClick() {
-        // we collect all fields of the game.
-        // (the same selector is used as in the style.css file for finding the fields)
         const fields = document.querySelectorAll('.game-field .row .field');
-
-        // for all fields...
-        for (let field of fields) {
-            // we add the same event listener for the right click (so called contextmenu) event
-            field.addEventListener('contextmenu', function (event) {
-                // so if you right click on any field...
-
-                // context menu remains hidden
+        fields.forEach( field => {
+            field.addEventListener("contextmenu", event => {
                 event.preventDefault();
-
-                // and "flagged" class toggles on the clicked element
-                // (styles of "flagged" class are defined in style.css)
-                event.currentTarget.classList.toggle('flagged');
+                event.currentTarget.classList.toggle("flagged");
             });
-        }
+        })
+    },
+
+    initLeftClick() {
+        const fields = document.querySelectorAll('.game-field .row .field');
+        fields.forEach( field => {
+            field.addEventListener("click", event => {
+                if (!event.currentTarget.classList.contains("flagged")) {
+                    event.currentTarget.classList.add("opened");
+                }
+            });
+        })
     },
 };
 

@@ -34,3 +34,7 @@
 .game-field .row .field.flagged {
     background: url('../img/flag.png');
 }
+
+.game-field .row .field.opened {
+    background: url('../img/open-field.png');
+}
