@@ -38,3 +38,15 @@
 .game-field .row .field.opened {
     background: url('../img/open-field.png');
 }
+
+.game-field .row .field.mine {
+    background: url('../img/closed-field.png')
+}
+
+.game-field .row .field.mine.flagged {
+    background: url('../img/flag.png')
+}
+
+.game-field .row .field.mine.boom {
+    background: url('../img/mine.png')
+}

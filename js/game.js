@@ -21,6 +21,7 @@ const game = {
         let cellIndex = 0
         for (let row = 0; row < rows; row++) {
             const rowElement = this.addRow(gameField);
+            console.log(rowElement)
             for (let col = 0; col < cols; col++) {
                 this.addCell(rowElement, row, col, minePlaces.has(cellIndex));
                 cellIndex++;
@@ -53,11 +54,11 @@ const game = {
                         data-row="${row}"
                         data-col="${col}"></div>`);
     },
-    // reference solution for "Create mine flagging feature" user story
     initRightClick() {
         const fields = document.querySelectorAll('.game-field .row .field');
         fields.forEach( field => {
             field.addEventListener("contextmenu", event => {
+                if (!event.currentTarget.classList.contains("opened") && !event.currentTarget.classList.contains("boom"))
                 event.preventDefault();
                 event.currentTarget.classList.toggle("flagged");
             });
@@ -70,6 +71,9 @@ const game = {
             field.addEventListener("click", event => {
                 if (!event.currentTarget.classList.contains("flagged")) {
                     event.currentTarget.classList.add("opened");
+                }
+                if (event.currentTarget.classList.contains("mine")) {
+                    event.currentTarget.classList.add("boom");
                 }
             });
         })
