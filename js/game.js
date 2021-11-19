@@ -127,6 +127,10 @@ const game = {
                     alert("End of game, you lost!");
                     isEventListenerActive = false;
                 }
+                if (document.querySelectorAll(".opened").length === (fields.length - allMines.length)) {
+                    alert("You won!")
+                    isEventListenerActive = false;
+                }
             });
         })
     },
