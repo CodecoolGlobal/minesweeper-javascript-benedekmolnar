@@ -75,6 +75,9 @@ const game = {
                 }
         }
     },
+    youWin: function() {
+
+    },
 
     initRightClick() {
         const fields = document.querySelectorAll('.game-field .row .field');
@@ -104,6 +107,7 @@ const game = {
 
     initLeftClick() {
         const fields = document.querySelectorAll('.game-field .row .field');
+        const allMines = document.querySelectorAll(".mine")
         fields.forEach( field => {
             field.addEventListener("click", event => {
                 if (!event.currentTarget.classList.contains("flagged")) {
@@ -115,6 +119,10 @@ const game = {
                 }
                 if (event.currentTarget.classList.contains("mine") && !event.currentTarget.classList.contains("flagged")) {
                     event.currentTarget.classList.add("boom");
+                    allMines.forEach(mineField => {
+                        mineField.classList.add("boom");
+                    })
+                    alert("End of game, you lost!");
                 }
             });
         })
