@@ -94,6 +94,10 @@ const game = {
             field.addEventListener("click", event => {
                 if (!event.currentTarget.classList.contains("flagged")) {
                     event.currentTarget.classList.add("opened");
+                    let numberInfo = event.currentTarget.getAttribute("data-number")
+                    if (numberInfo !== "0") {
+                       event.currentTarget.textContent = numberInfo
+                    }
                 }
                 if (event.currentTarget.classList.contains("mine") && !event.currentTarget.classList.contains("flagged")) {
                     event.currentTarget.classList.add("boom");
