@@ -107,9 +107,11 @@ const game = {
 
     initLeftClick() {
         const fields = document.querySelectorAll('.game-field .row .field');
-        const allMines = document.querySelectorAll(".mine")
+        const allMines = document.querySelectorAll(".mine");
+        let isEventListenerActive = true;
         fields.forEach( field => {
             field.addEventListener("click", event => {
+                if (!isEventListenerActive) return;
                 if (!event.currentTarget.classList.contains("flagged")) {
                     event.currentTarget.classList.add("opened");
                     let numberInfo = event.currentTarget.getAttribute("data-number");
@@ -123,6 +125,7 @@ const game = {
                         mineField.classList.add("boom");
                     })
                     alert("End of game, you lost!");
+                    isEventListenerActive = false;
                 }
             });
         })
